@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Framework7 Core App</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@8/framework7-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7-icons/css/framework7-icons.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Main View -->
+    <div class="view view-main view-init" data-url="/home/">
+      <!-- Bottom Toolbar -->
+      <div class="toolbar toolbar-bottom tabbar">
+        <div class="toolbar-inner">
+          <a href="/home/" class="tab-link" id="hm">
+            <i class="f7-icons">house_fill</i>
+            <span class="tabbar-label">Home</span>
+          </a>
+          <a href="/about/" class="tab-link" id="ab">
+            <i class="f7-icons">info_circle_fill</i>
+            <span class="tabbar-label">About</span>
+          </a>
+          <a href="/settings/" class="tab-link" id="ss">
+            <i class="f7-icons">gear_alt_fill</i>
+            <span class="tabbar-label">Settings</span>
+          </a>
+          <a href="/login/" class="tab-link" id="lgn">
+            <i class="f7-icons">person_crop_circle_fill_badge_checkmark</i>
+            <span class="tabbar-label">Login</span>
+          </a>
+          <a href="/profile/" class="tab-link" id="prf">
+            <i class="f7-icons">person_circle</i>
+            <span class="tabbar-label">Profile</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/framework7@8/framework7-bundle.min.js"></script>
+  <script>
+    var app = new Framework7({
+      el: '#app',
+      name: 'MyApp',
+      routes: [
+        { path: '/home/', url: './pages/home.html' },
+        { path: '/about/', url: './pages/about.html' },
+        { path: '/settings/', url: './pages/settings.html' },
+        { path: '/login/', url: './pages/login.html' },
+        { path: '/profile/', url: './pages/profile.html' },
+      ],
+    });
+
+    const mainView = app.views.create('.view-main');
+
+    mainView.router.on('routeChange', (newRoute) => {
+      const currentPath = newRoute.route.path; console.log(currentPath)
+      if(currentPath == '/about/'){
+        document.getElementById('ab').setAttribute('class','tab-link tab-link-active')
+      }
+    });
+  </script>
+</body>
+
+</html>

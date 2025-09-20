@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Framework7 Core App</title>
+    <!-- CSS Framework7 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@8/framework7-bundle.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7-icons/css/framework7-icons.css">
+</head>
+
+<body>
+    <!-- App root -->
+    <div id="app">
+        <!-- View utama -->
+        <div class="view view-main view-init"></div>
+    </div>
+
+    <!-- JS Framework7 -->
+    <script src="https://cdn.jsdelivr.net/npm/framework7@8/framework7-bundle.min.js"></script>
+    <script>
+        // Init App
+        var app = new Framework7({
+            el: '#app',
+            name: 'MyApp',
+            id: 'com.myapp.test',
+            // Routing
+            theme: 'md',
+            routes: [
+                {
+                    path: '/',
+                    url: './login.html',
+                },
+                {
+                    path: '/dashboard/',
+                    url: './dashboard.html',
+                },
+                {
+                    path: '/produk/',
+                    url: './produk.html',
+                }
+            ], view: {
+                pushState: true,       // 👉 aktifkan clean URL
+                pushStateSeparator: '', // biar tidak ada ? atau # tambahan
+                pushStateRoot: '/',    // root aplikasi
+            }
+        });
+
+        var actions = app.actions.create({
+            buttons: [
+                { text: 'Edit', onClick: () => app.dialog.alert('Edit dipilih') },
+                { text: 'Hapus', color: 'red', onClick: () => app.dialog.alert('Hapus dipilih') },
+                { text: 'Logout', onClick: () => app.dialog.alert('Logout dipilih') },
+                { text: 'Batal', bold: true, onClick: () => actions.close() }
+            ]
+        });
+
+        function openAction() {
+            actions.open();
+        }
+
+
+        function loginFunc() {
+            var user = document.getElementById('username').value;
+            var pass = document.getElementById('password').value;
+
+            if (user === "admin" && pass === "1234") {
+                app.views.main.router.navigate('/dashboard/');
+            } else {
+                app.dialog.alert("Username / password salah!");
+            }
+        }
+
+        function openCamera() {
+            navigator.camera.getPicture(onSuccess, onFail, {
+                quality: 70,
+                destinationType: Camera.DestinationType.FILE_URI,
+                sourceType: Camera.PictureSourceType.CAMERA,
+                allowEdit: false,
+                saveToPhotoAlbum: true
+            });
+
+            function onSuccess(imageURI) {
+                var img = document.getElementById('preview');
+                img.src = imageURI;
+            }
+
+            function onFail(message) {
+                app.dialog.alert('Gagal buka kamera: ' + message);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<div class="page" data-name="login">
+        <!-- Navbar -->
+        <div class="navbar">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="title">Login</div>
+          </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="page-content login-screen-content">
+          <div class="block block-strong">
+            <form id="loginForm" onsubmit="return false">
+              <div class="list no-hairlines-md">
+                <ul>
+                  <!-- Username -->
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Username</div>
+                      <div class="item-input-wrap">
+                        <input type="text" id="username" placeholder="Enter username" required>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- Password -->
+                  <li class="item-content item-input">
+                    <div class="item-inner">
+                      <div class="item-title item-label">Password</div>
+                      <div class="item-input-wrap">
+                        <input type="password" id="password" placeholder="Enter password" required>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="block">
+                <button type="submit" class="button button-fill" onclick="loginFunc()">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>

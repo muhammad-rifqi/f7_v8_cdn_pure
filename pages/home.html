@@ -1,0 +1,23 @@
+<div class="page" data-name="home">
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="title">Home</div>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="block">
+      <p>🚀 Ini halaman Home terpisah</p>
+      <p><a class="button button-fill" id="helloBtn">Klik Aku</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('page:init', function (e) {
+    if (e.detail.route.name === 'home') {
+      document.getElementById('helloBtn').addEventListener('click', function () {
+        app.dialog.alert('Halo dari Home! 🎉');
+      });
+    }
+  });
+</script>
